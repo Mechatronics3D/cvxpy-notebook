@@ -2,7 +2,6 @@ FROM jupyter/datascience-notebook
 MAINTAINER Behzad Samadi <behzad@mechatronics3d.com>
 
 # Folders
-ENV DL=$HOME/Downloads
 ENV WS=$HOME/work
 ENV ST=$HOME/.ipython/default_profile/startup
 
@@ -40,7 +39,6 @@ RUN conda install nose
 RUN git clone https://github.com/mwytock/cvxflow.git $WS/cvxflow
   
 # Giving the ownership of the folders to the NB_USER
-RUN chown -R $NB_USER $DL
 RUN chown -R $NB_USER $WS
 
 # Notebook startup script
