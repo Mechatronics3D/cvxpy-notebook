@@ -27,9 +27,9 @@ RUN cd $WS && mkdir cvxpy && mkdir cvxflow
 RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
 
 # Install cvxpy, scs and nose 
-RUN conda install -n python3 -c https://conda.anaconda.org/omnia scs
-RUN conda install -n python3 -c cvxgrp cvxpy
-RUN conda install -n python3 nose
+RUN conda install -c https://conda.anaconda.org/omnia scs
+RUN conda install -c cvxgrp cvxpy
+RUN conda install nose
 RUN conda install -n python2 -c https://conda.anaconda.org/omnia scs
 RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
