@@ -27,10 +27,15 @@ RUN cd $WS && mkdir cvxpy && mkdir cvxflow
 RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
 
 # Install cvxpy, scs and nose 
-RUN conda install -c https://conda.anaconda.org/omnia scs
+RUN git clone https://github.com/cvxgrp/scs.git $DL && \
+    cd $DL/scs/python && \
+    python3 setup.py install
 RUN conda install -c cvxgrp cvxpy
 RUN conda install nose
-RUN conda install -n python2 -c https://conda.anaconda.org/omnia scs
+RUN source activate python2 && \
+    cd $DL/scs/python && \
+    python2 setup.py install
+    source deactivate
 RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
 
@@ -39,9 +44,5 @@ RUN git clone https://github.com/mwytock/cvxflow.git $WS/cvxflow
   
 # Giving the ownership of the folders to the NB_USER
 RUN chown -R $NB_USER $WS
-
-# Notebook startup script
-COPY nb_startup.py $ST
-COPY nb_startup.py $WS
 
 USER $NB_USER
