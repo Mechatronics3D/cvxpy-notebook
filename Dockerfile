@@ -29,12 +29,12 @@ RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
 RUN conda install -c https://conda.anaconda.org/omnia scs
 RUN conda install -c cvxgrp cvxpy
 RUN conda install nose
-RUN activate python2 && \
+RUN source activate python2 && \
     conda install -c cvxgrp cvxpy && \
     conda install nose && \
     pip install --upgrade pip && \
     pip install $PIP2 && \
-    deactivate
+    source deactivate
 
 # Clone cvxflow
 RUN git clone https://github.com/mwytock/cvxflow.git $WS/cvxflow
