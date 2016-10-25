@@ -7,18 +7,12 @@ ENV ST=$HOME/.ipython/default_profile/startup
 
 # Packages
 ENV PKGS="wget unzip gcc g++ gfortran git cmake liblapack-dev pkg-config swig spyder time"
-ENV PIP="vpython CVXcanon"
 
 USER root
 
 # Install required packages
 RUN apt-get update && \
     apt-get install -y --install-recommends $PKGS
-
-RUN pip2 install --upgrade pip
-RUN pip2 install $PIP
-RUN pip3 install --upgrade pip
-RUN pip3 install $PIP
 
 # Create cvxpy and cvxflow folders
 RUN cd $WS && mkdir cvxpy && mkdir cvxflow
@@ -30,13 +24,10 @@ RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
 RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
     cd $DL/scs/python && \
     python3 setup.py install
+RUN conda install mkl
 RUN conda install -c cvxgrp cvxpy
 RUN conda install nose
-RUN conda install mkl
-# RUN source activate python2 && \
-#    cd $DL/scs/python && \
-#    python2 setup.py install
-#    source deactivate
+RUN conda install -n python2 mkl
 RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
 
