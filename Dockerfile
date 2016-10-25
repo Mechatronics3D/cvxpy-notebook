@@ -32,10 +32,10 @@ RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
     python3 setup.py install
 RUN conda install -c cvxgrp cvxpy
 RUN conda install nose
-RUN source activate python2 && \
-    cd $DL/scs/python && \
-    python2 setup.py install
-    source deactivate
+# RUN source activate python2 && \
+#    cd $DL/scs/python && \
+#    python2 setup.py install
+#    source deactivate
 RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
 
