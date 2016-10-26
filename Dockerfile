@@ -4,6 +4,7 @@ MAINTAINER Behzad Samadi <behzad@mechatronics3d.com>
 # Folders
 ENV WS=$HOME/work
 ENV ST=$HOME/.ipython/default_profile/startup
+ENV DL=$HOME/Downloads
 
 # Packages
 ENV PKGS="wget unzip gcc g++ gfortran git cmake liblapack-dev pkg-config swig spyder time"
@@ -19,6 +20,11 @@ RUN cd $WS && mkdir cvxpy && mkdir cvxflow
 
 # Clone cvxpy short course
 RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
+
+# Install scs
+RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
+    cd $DL/scs/python && \
+    python3 setup.py install
 
 # Install cvxpy and nose 
 RUN conda install mkl mkl-service nose
