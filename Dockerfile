@@ -23,7 +23,9 @@ RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
 
 # Update conda
 RUN conda update conda
-RUN conda update mkl
+
+# Install MKL
+RUN conda install mkl mkl-service
 
 # Install scs
 RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
