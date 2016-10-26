@@ -27,10 +27,12 @@ RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
     python3 setup.py install
 
 # Install cvxpy and nose 
-RUN conda install mkl mkl-service nose
+RUN conda install mkl mkl-service
 RUN conda install -c cvxgrp cvxpy
-RUN conda install -n python2 mkl mkl-service nose
+RUN conda install nose
+RUN conda install -n python2 mkl mkl-service
 RUN conda install -n python2 -c cvxgrp cvxpy
+RUN conda install -n python2 nose
 
 # Clone cvxflow
 RUN git clone https://github.com/mwytock/cvxflow.git $WS/cvxflow
