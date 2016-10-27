@@ -12,26 +12,26 @@ ENV PIP="cvxcanon"
 
 USER root
 
-# Install required packages
+# Update and install required packages
 RUN apt-get update && \
     apt-get install -y --install-recommends $PKGS
 
+# Update pip2
 RUN pip2 install --upgrade pip
 RUN pip2 install $PIP
+
+# Update pip3
 RUN pip3 install --upgrade pip
 RUN pip3 install $PIP
+
+# Update conda
+RUN conda update conda
 
 # Create cvxpy and cvxflow folders
 RUN cd $WS && mkdir cvxpy && mkdir cvxflow
 
 # Clone cvxpy short course
 RUN git clone https://github.com/cvxgrp/cvx_short_course.git $WS/cvxpy
-
-# Update conda
-RUN conda update conda
-
-# Install MKL
-RUN conda install mkl mkl-service
 
 # Install scs
 RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
@@ -43,7 +43,6 @@ RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
 RUN conda install -c cvxgrp cvxpy
 RUN conda install nose
 RUN conda install -f  numpy
-RUN conda install -n python2 mkl mkl-service
 RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
 RUN conda install -n python2 -f  numpy
