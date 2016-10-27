@@ -42,9 +42,11 @@ RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
 # Install cvxpy and nose 
 RUN conda install -c cvxgrp cvxpy
 RUN conda install nose
+RUN conda install -f  numpy
 RUN conda install -n python2 mkl mkl-service
 RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
+RUN conda install -n python2 -f  numpy
 
 # Clone cvxflow
 RUN git clone https://github.com/mwytock/cvxflow.git $WS/cvxflow
