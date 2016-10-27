@@ -30,7 +30,8 @@ RUN conda install mkl mkl-service
 # Install scs
 RUN git clone https://github.com/cvxgrp/scs.git $DL/scs && \
     cd $DL/scs/python && \
-    python3 setup.py install
+    python3 setup.py install && \
+    $CONDA_DIR/envs/python2/bin/python setup.py install 
 
 # Install cvxpy and nose 
 RUN conda install -c cvxgrp cvxpy
