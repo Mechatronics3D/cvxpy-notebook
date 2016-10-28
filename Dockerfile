@@ -31,11 +31,7 @@ RUN conda install -n python2 -c cvxgrp cvxpy
 RUN conda install -n python2 nose
 
 # Reinstall numpy
-RUN conda remove nomkl
-RUN conda install mkl
 RUN conda install -f  numpy
-RUN conda remove -n python2 nomkl
-RUN conda install -n python2 mkl
 RUN conda install -n python2 -f  numpy
 
 # Create cvxpy and cvxflow folders
