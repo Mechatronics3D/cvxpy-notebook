@@ -25,9 +25,9 @@ RUN pip3 install --upgrade pip
 RUN conda update conda
 
 # Install cvxpy and nose 
-RUN conda install -c cvxgrp cvxpy
+RUN conda install -c cvxgrp cvxpy=0.4.6
 RUN conda install nose
-RUN conda install -n python2 -c cvxgrp cvxpy
+RUN conda install -n python2 -c cvxgrp cvxpy=0.4.6
 RUN conda install -n python2 nose
 
 # Reinstall numpy
